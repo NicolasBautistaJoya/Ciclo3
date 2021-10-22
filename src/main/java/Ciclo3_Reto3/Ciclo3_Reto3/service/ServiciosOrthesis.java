@@ -40,4 +40,41 @@ public class ServiciosOrthesis {
             }
         }
     }
+    public Orthesis update(Orthesis orthesis){
+        if(orthesis.getId()!=null){
+            Optional<Orthesis> evt=metodosCrud.getOrthesis(orthesis.getId());
+            if(!evt.isEmpty()){
+                if(orthesis.getName()!=null){
+                    evt.get().setName(orthesis.getName());
+                }
+                if(orthesis.getBrand()!=null){
+                    evt.get().setBrand(orthesis.getBrand());
+                }
+                if(orthesis.getYear()!=null){
+                    evt.get().setYear(orthesis.getYear());
+                }
+                if(orthesis.getDescription()!=null){
+                    evt.get().setDescription(orthesis.getDescription());
+                }
+                if(orthesis.getCategory()!=null){
+                    evt.get().setCategory(orthesis.getCategory());
+                }
+                metodosCrud.save(evt.get());
+                return evt.get();
+            }else{
+                return orthesis;
+            }
+        }else{
+            return orthesis;
+        }
+    }
+
+
+    public boolean deleteOrthesis(int orthesisId) {
+        Boolean aBoolean = getOrthesis(orthesisId).map(orthesis -> {
+            metodosCrud.delete(orthesis);
+            return true;
+        }).orElse(false);
+        return aBoolean;
+    }
 }

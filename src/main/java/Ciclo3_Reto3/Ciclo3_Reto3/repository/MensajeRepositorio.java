@@ -5,6 +5,7 @@
 package Ciclo3_Reto3.Ciclo3_Reto3.repository;
 
 import Ciclo3_Reto3.Ciclo3_Reto3.InterfaceMensaje;
+import Ciclo3_Reto3.Ciclo3_Reto3.model.Categoria;
 import Ciclo3_Reto3.Ciclo3_Reto3.model.Mensaje;
 import java.util.List;
 import java.util.Optional;
@@ -30,5 +31,8 @@ public class MensajeRepositorio {
         return crud3.save(message);
     }
     
+    public void delete(Mensaje message){
+        crud3.delete(message);
+    }
     
 }

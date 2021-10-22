@@ -41,4 +41,37 @@ public class ServiciosCliente {
         }
     }
     
+    public Cliente update(Cliente client){
+        if(client.getIdClient()!=null){
+            Optional<Cliente> evt= metodosCrud.getCliente(client.getIdClient());
+            if(!evt.isEmpty()){
+                if(client.getName()!=null){
+                    evt.get().setName(client.getName());
+                }
+                if(client.getAge()!=null){
+                    evt.get().setAge(client.getAge());
+                }
+                if(client.getPassword()!=null){
+                    evt.get().setPassword(client.getPassword());
+                }
+                metodosCrud.save(evt.get());
+                return evt.get();
+            }else{
+                return client;
+            }
+        }else{
+            return client;
+        }
+    }
+
+    public boolean deleteClient(int clientId) {
+        Boolean aBoolean = getCliente(clientId).map(client -> {
+            metodosCrud.delete(client);
+            return true;
+        }).orElse(false);
+        return aBoolean;
+    }
+    
+    
+    
 }

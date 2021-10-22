@@ -31,5 +31,8 @@ public class OrthesisRepositorio {
         return crud.save(orthesis);
     }
     
+    public void delete(Orthesis orthesis){
+        crud.delete(orthesis);
+    }
     
 }

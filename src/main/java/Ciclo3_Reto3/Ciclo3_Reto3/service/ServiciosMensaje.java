@@ -40,4 +40,29 @@ public class ServiciosMensaje {
             }
         }
     }
+    
+    public Mensaje update(Mensaje message){
+        if(message.getIdMessage()!=null){
+            Optional<Mensaje> evt= metodosCrud.getMessage(message.getIdMessage());
+            if(!evt.isEmpty()){
+                if(message.getMessageText()!=null){
+                    evt.get().setMessageText(message.getMessageText());
+                }
+                metodosCrud.save(evt.get());
+                return evt.get();
+            }else{
+                return message;
+            }
+        }else{
+            return message;
+        }
+    }
+
+    public boolean deleteMessage(int messageId) {
+        Boolean aBoolean = getMessage(messageId).map(message -> {
+            metodosCrud.delete(message);
+            return true;
+        }).orElse(false);
+        return aBoolean;
+    }
 }

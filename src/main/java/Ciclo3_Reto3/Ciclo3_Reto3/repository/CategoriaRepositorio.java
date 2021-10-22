@@ -6,6 +6,7 @@ package Ciclo3_Reto3.Ciclo3_Reto3.repository;
 
 import Ciclo3_Reto3.Ciclo3_Reto3.InterfaceCategoria;
 import Ciclo3_Reto3.Ciclo3_Reto3.model.Categoria;
+import Ciclo3_Reto3.Ciclo3_Reto3.model.Cliente;
 import java.util.List;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,6 +31,10 @@ public class CategoriaRepositorio {
     
     public Categoria save(Categoria categoria){
         return crud2.save(categoria);
+    }
+    
+    public void delete(Categoria categoria){
+        crud2.delete(categoria);
     }
     
 }

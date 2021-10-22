@@ -5,6 +5,7 @@
 package Ciclo3_Reto3.Ciclo3_Reto3.repository;
 
 import Ciclo3_Reto3.Ciclo3_Reto3.InterfaceReservacion;
+import Ciclo3_Reto3.Ciclo3_Reto3.model.Mensaje;
 import Ciclo3_Reto3.Ciclo3_Reto3.model.Reservacion;
 import java.io.Serializable;
 import java.util.List;
@@ -29,6 +30,10 @@ public class ReservacionRepositorio implements Serializable{
     }
     public Reservacion save(Reservacion reservation){
         return crud4.save(reservation);
+    }
+    
+    public void delete(Reservacion reservation){
+        crud4.delete(reservation);
     }
     
 }
