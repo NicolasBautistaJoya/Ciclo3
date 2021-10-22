@@ -32,8 +32,8 @@ public class ServiciosReservacion {
         if(reservation.getIdReservation()==null){
             return metodosCrud.save(reservation);
         }else{
-            Optional<Reservacion> e= metodosCrud.getReservation(reservation.getIdReservation());
-            if(e.isEmpty()){
+            Optional<Reservacion> evt= metodosCrud.getReservation(reservation.getIdReservation());
+            if(evt.isEmpty()){
                 return metodosCrud.save(reservation);
             }else{
                 return reservation;
@@ -41,5 +41,36 @@ public class ServiciosReservacion {
         }
     }
 
+    public Reservacion update(Reservacion reservation){
+        if(reservation.getIdReservation()!=null){
+            Optional<Reservacion> evt= metodosCrud.getReservation(reservation.getIdReservation());
+            if(!evt.isEmpty()){
+
+                if(reservation.getStartDate()!=null){
+                    evt.get().setStartDate(reservation.getStartDate());
+                }
+                if(reservation.getDevolutionDate()!=null){
+                    evt.get().setDevolutionDate(reservation.getDevolutionDate());
+                }
+                if(reservation.getStatus()!=null){
+                    evt.get().setStatus(reservation.getStatus());
+                }
+                metodosCrud.save(evt.get());
+                return evt.get();
+            }else{
+                return reservation;
+            }
+        }else{
+            return reservation;
+        }
+    }
+
+    public boolean deleteReservation(int reservationId) {
+        Boolean aBoolean = getReservation(reservationId).map(reservation -> {
+            metodosCrud.delete(reservation);
+            return true;
+        }).orElse(false);
+        return aBoolean;
+    }
     
 }
