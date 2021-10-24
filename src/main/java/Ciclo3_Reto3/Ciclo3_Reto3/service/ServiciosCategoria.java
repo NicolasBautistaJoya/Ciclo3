@@ -43,15 +43,15 @@ public class ServiciosCategoria {
     
     public Categoria update(Categoria categoria){
         if(categoria.getId()!=null){
-            Optional<Categoria> evt=metodosCrud.getCategoria(categoria.getId());
-            if(!evt.isEmpty()){
+            Optional<Categoria>g=metodosCrud.getCategoria(categoria.getId());
+            if(!g.isEmpty()){
                 if(categoria.getDescription()!=null){
-                    evt.get().setDescription(categoria.getDescription());
+                    g.get().setDescription(categoria.getDescription());
                 }
                 if(categoria.getName()!=null){
-                    evt.get().setName(categoria.getName());
+                    g.get().setName(categoria.getName());
                 }
-                return metodosCrud.save(evt.get());
+                return metodosCrud.save(g.get());
             }
         }
         return categoria;
