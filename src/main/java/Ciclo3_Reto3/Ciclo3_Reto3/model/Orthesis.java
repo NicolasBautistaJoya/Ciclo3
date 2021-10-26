@@ -29,96 +29,121 @@ import javax.persistence.Table;
 public class Orthesis implements Serializable{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    
+    //Identificador
     private Integer id;
     
-    @Column(length = 45)
+    //Nombre
+    @Column(length = 45)    
     private String name;
-    @Column(length = 45)
+    
+    //Marca
+    @Column(length = 45)    
     private String  brand;
-    @Column(length = 4)
+    
+    //Año
+    @Column(length = 4)    
     private Integer year; 
-    @Column(length = 250)
+    
+    //Descripcion
+    @Column(length = 250)    
     private String description;
     
+    //Relacion con la tabla categoria
     @ManyToOne
     @JoinColumn(name="categoryid")
     @JsonIgnoreProperties("ortopedics")
     private Categoria category;
     
+    //Relacion con la tabla mensaje
     @OneToMany(cascade = {CascadeType.PERSIST}, mappedBy = "ortopedic")
     @JsonIgnoreProperties({"ortopedic","client"})
     private List<Mensaje> messages;
 
+    //Relacion con la tabla reservaciones
     @OneToMany(cascade = {CascadeType.PERSIST}, mappedBy = "ortopedic")
     @JsonIgnoreProperties({"ortopedic","message"})
     public List<Reservacion> reservations;
 
+    //Obtener el id
     public Integer getId() {
         return id;
     }
 
+    //Establecer el id
     public void setId(Integer id) {
         this.id = id;
     }
 
+    //Obtener el nombre
     public String getName() {
         return name;
     }
 
+    //Establecer el nombre
     public void setName(String name) {
         this.name = name;
     }
 
+    //Obtener la marca
     public String getBrand() {
         return brand;
     }
 
+    //Establecer la marca
     public void setBrand(String brand) {
         this.brand = brand;
     }
 
+    //Obtener el año
     public Integer getYear() {
         return year;
     }
 
+    //Establecer el año
     public void setYear(Integer year) {
         this.year = year;
     }
 
+    //Obtener descrpcion
     public String getDescription() {
         return description;
     }
 
+    //Establecer descripcion
     public void setDescription(String description) {
         this.description = description;
     }
 
+    
+    //Obtener categoria
     public Categoria getCategory() {
         return category;
     }
 
+    //Establecer categoria
     public void setCategory(Categoria category) {
         this.category = category;
     }
 
+    //Obtener mensaje
     public List<Mensaje> getMessages() {
         return messages;
     }
 
+    //Establecer mensaje
     public void setMessages(List<Mensaje> messages) {
         this.messages = messages;
     }
 
+    //Obtener reservacion
     public List<Reservacion> getReservations() {
         return reservations;
     }
 
+    //Establecer reservacion
     public void setReservations(List<Reservacion> reservations) {
         this.reservations = reservations;
     }
-
-    
-
-    
     
 }
