@@ -30,7 +30,8 @@ public class Orthesis implements Serializable{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
         
-    //id   
+    //id  
+    /**Identificador**/
     private Integer id;
     
     //Name
