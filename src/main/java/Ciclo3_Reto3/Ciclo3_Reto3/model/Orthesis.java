@@ -29,40 +29,47 @@ import javax.persistence.Table;
 public class Orthesis implements Serializable{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    
-    //Identificador
+        
+    //id   
     private Integer id;
     
-    //Nombre
-    @Column(length = 45)    
+    //Name
+    @Column(length = 45) 
+    /**Nombre**/
     private String name;
     
-    //Marca
-    @Column(length = 45)    
+    //Brand
+    @Column(length = 45)   
+    /**marca**/
     private String  brand;
     
-    //Año
-    @Column(length = 4)    
+    //Year
+    @Column(length = 4)  
+    /**año**/
     private Integer year; 
     
-    //Descripcion
-    @Column(length = 250)    
+    //Description
+    @Column(length = 250)
+    /**descrpcion**/
     private String description;
     
     //Relacion con la tabla categoria
     @ManyToOne
     @JoinColumn(name="categoryid")
     @JsonIgnoreProperties("ortopedics")
+    /**Categoria**/
     private Categoria category;
     
     //Relacion con la tabla mensaje
     @OneToMany(cascade = {CascadeType.PERSIST}, mappedBy = "ortopedic")
     @JsonIgnoreProperties({"ortopedic","client"})
+    /**Mensaje**/
     private List<Mensaje> messages;
 
     //Relacion con la tabla reservaciones
     @OneToMany(cascade = {CascadeType.PERSIST}, mappedBy = "ortopedic")
     @JsonIgnoreProperties({"ortopedic","message"})
+    /**Reservacion**/
     public List<Reservacion> reservations;
 
     //Obtener el id
