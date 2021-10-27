@@ -17,17 +17,22 @@ import org.springframework.stereotype.Service;
  */
 @Service
 public class ServiciosReservacion {
-    @Autowired
+    
+    //Declaracion de metoddos crud
+    @Autowired    
     private ReservacionRepositorio metodosCrud;
     
+    //metodo paara obtener todas las variables
     public List<Reservacion> getAll(){
         return metodosCrud.getAll();
     }
 
+    //metodo para obtener el id de la reservacion
     public Optional<Reservacion> getReservation(int reservationId) {
         return metodosCrud.getReservation(reservationId);
     }
 
+    //metodo para guardar una nueva reservacion
     public Reservacion save(Reservacion reservation){
         if(reservation.getIdReservation()==null){
             return metodosCrud.save(reservation);
@@ -41,6 +46,7 @@ public class ServiciosReservacion {
         }
     }
 
+    //metodo para actualizar una reservacion
     public Reservacion update(Reservacion reservation){
         if(reservation.getIdReservation()!=null){
             Optional<Reservacion> evt= metodosCrud.getReservation(reservation.getIdReservation());
@@ -65,6 +71,7 @@ public class ServiciosReservacion {
         }
     }
 
+    //metodo para borrar una reservacion
     public boolean deleteReservation(int reservationId) {
         Boolean aBoolean = getReservation(reservationId).map(reservation -> {
             metodosCrud.delete(reservation);
