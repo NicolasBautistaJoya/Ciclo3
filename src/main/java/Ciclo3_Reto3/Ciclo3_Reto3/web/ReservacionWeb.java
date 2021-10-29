@@ -4,7 +4,9 @@
  */
 package Ciclo3_Reto3.Ciclo3_Reto3.web;
 
+import Ciclo3_Reto3.Ciclo3_Reto3.ContadorClientes;
 import Ciclo3_Reto3.Ciclo3_Reto3.model.Reservacion;
+import Ciclo3_Reto3.Ciclo3_Reto3.reportes.StatusReservas;
 import Ciclo3_Reto3.Ciclo3_Reto3.service.ServiciosReservacion;
 import java.util.List;
 import java.util.Optional;
@@ -58,5 +60,21 @@ public class ReservacionWeb {
     public boolean delete(@PathVariable("id") int reservationId) {
         return servicio.deleteReservation(reservationId);
     }
+    
+    @GetMapping("/report-status")
+    public StatusReservas getReservas(){
+        return servicio.statusReporte();
+    }
+    
+    @GetMapping("/report-dates/{dateOne}/{dateTwo}")
+     public List<Reservacion> getReservasTiempo (@PathVariable("dateOne")String dateOne, @PathVariable("dateTwo")String dateTwo ){
+         return servicio.reporteTiempoServicio(dateOne, dateTwo);
+     }
+     
+     @GetMapping("/report-clients")
+     public List<ContadorClientes> getClientes(){
+         return servicio.reporteClientesServicio();
+     }
+
 
 }
