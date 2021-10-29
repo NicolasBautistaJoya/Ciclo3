@@ -93,7 +93,7 @@ public class ServiciosReservacion {
     }
     
     public StatusReservas  statusReporte () {
-        List<Reservacion>completada=metodosCrud.StatusReservacion("com´pleted");
+        List<Reservacion>completada=metodosCrud.StatusReservacion("completed");
         List<Reservacion>cancelada=metodosCrud.StatusReservacion("cancelled");
         
         return new StatusReservas(completada.size(), cancelada.size() );
