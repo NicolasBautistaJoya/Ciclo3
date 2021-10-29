@@ -41,7 +41,7 @@ public class ReservacionRepositorio implements Serializable{
     }
     
     public  List<Reservacion> StatusReservacion (String status) {
-        return crud4.fingAllByStatus(status);
+        return crud4.findAllByStatus(status);
     }
              
      public List<Reservacion> ReservacionTiempoRepositorio (Date a, Date b){
