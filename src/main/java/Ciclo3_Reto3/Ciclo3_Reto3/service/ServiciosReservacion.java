@@ -5,7 +5,7 @@
 package Ciclo3_Reto3.Ciclo3_Reto3.service;
 
 import Ciclo3_Reto3.Ciclo3_Reto3.ContadorClientes;
-  import Ciclo3_Reto3.Ciclo3_Reto3.model.Reservacion;
+import Ciclo3_Reto3.Ciclo3_Reto3.model.Reservacion;
 import Ciclo3_Reto3.Ciclo3_Reto3.reportes.StatusReservas;
 import Ciclo3_Reto3.Ciclo3_Reto3.repository.ReservacionRepositorio;
 import java.text.ParseException;
@@ -92,6 +92,8 @@ public class ServiciosReservacion {
         return aBoolean;
     }
     
+    //metodo para obtener las reservaciones
+    /**metodo para mostrar las reservaciones**/
     public StatusReservas  statusReporte () {
         List<Reservacion>completada=metodosCrud.StatusReservacion("completed");
         List<Reservacion>cancelada=metodosCrud.StatusReservacion("cancelled");
@@ -99,6 +101,8 @@ public class ServiciosReservacion {
         return new StatusReservas(completada.size(), cancelada.size() );
     }
         
+    //metodo para obtener el reporte de tiempo de servicio
+    /**metodo para mostrar el reporte de tiempo de servicio**/
     public List<Reservacion> reporteTiempoServicio (String datoA, String datoB){
         SimpleDateFormat parser = new SimpleDateFormat ("yyyy-MM-dd");
         
@@ -117,6 +121,9 @@ public class ServiciosReservacion {
         
         } 
     } 
+    
+    //metodo para obtener el reporte de los clientes
+    /**metodo para mostrar el reporte de tlos clientes**/
     public List<ContadorClientes> reporteClientesServicio(){
             return metodosCrud.getClientesRepositorio();
     }
